@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+# al inicio del archivo si no está
+from datetime import timedelta
 
 # Load environment variables from .env
 load_dotenv()
@@ -32,8 +34,26 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     ".onrender.com",
-    "127.0.0.1"
+    '127.0.0.1',
+    "localhost",
 ]
+ ### EN QUE LADO SE PERMITEN SOLICITUDES
+
+
+DEBUG = True
+
+ALLOWED_HOSTS = [
+    ".onrender.com",
+    "127.0.0.1",
+    "localhost",
+]
+##DESDE SITIOS ESPECIFICOS
+CORS_ALLOWED_ORIGINS = [
+    "https://127.0.0.1:8000",
+]
+### PERMITIR CORS DESDE TODAS PARTES (solo desarrollo)
+CORS_ALLOW_ALL_ORIGINS = True
+
 
 
 # Application definition
@@ -45,19 +65,42 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'contactos'
+    'contactos',
+
+    'rest_framework',
+    'corsheaders',
+
 ]
+
+
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "AUTH_HEADER_TYPES": ("Bearer",),
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
+
 
 ROOT_URLCONF = 'agenda_contactos.urls'
 
@@ -84,12 +127,8 @@ WSGI_APPLICATION = 'agenda_contactos.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME"),
-        "USER": os.getenv("DB_USER"),
-        "PASSWORD": os.getenv("DB_PASSWORD"),
-        "HOST": os.getenv("DB_HOST"),
-        "PORT": os.getenv("DB_PORT"),
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "db.sqlite3",
     }
 }
 
