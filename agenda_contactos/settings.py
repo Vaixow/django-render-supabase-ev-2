@@ -57,7 +57,6 @@ CORS_ALLOWED_ORIGINS = [
 ]
 ### PERMITIR CORS DESDE TODAS PARTES (solo desarrollo)
 
-CORS_ALLOW_ALL_ORIGINS = True
 
 
 # Application definition
