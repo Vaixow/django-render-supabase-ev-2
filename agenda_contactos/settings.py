@@ -48,22 +48,13 @@ ALLOWED_HOSTS = [
     "localhost",
 ]
 ##DESDE SITIOS ESPECIFICOS
-# settings.py
-
-# ... otras configuraciones
-
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "http://localhost:5500",  # <--- ESTA LÍNEA DEBE ESTAR
+    "http://localhost:5500",
     "http://localhost:4200",
     "http://127.0.0.1:8000",
     "https://ultimo-intento-ahora-si.onrender.com",
-    "http://127.0.0.1:5500",  # <--- Y ESTA TAMBIÉN (para cubrir IP o localhost)
 ]
-
-# También puedes usar esto temporalmente para una verificación rápida,
-# pero no se recomienda para producción:
-# CORS_ALLOW_ALL_ORIGINS = True
 ### PERMITIR CORS DESDE TODAS PARTES (solo desarrollo)
 
 
