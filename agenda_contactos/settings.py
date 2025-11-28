@@ -48,13 +48,20 @@ ALLOWED_HOSTS = [
     "localhost",
 ]
 ##DESDE SITIOS ESPECIFICOS
+# settings.py de Django
+
+# ... (código anterior)
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "http://localhost:5500",
+    "http://localhost:5500",  # Opción 1: Si 127.0.0.1 se resuelve como localhost
     "http://localhost:4200",
     "http://127.0.0.1:8000",
     "https://ultimo-intento-ahora-si.onrender.com",
-    "http://127.0.0.1:5500",
+    
+
+    "http://127.0.0.1:5500",  # Opción 2: La dirección exacta que usa tu navegador
+    "http://0.0.0.0:5500",    # Opción de seguridad si 127.0.0.1 no funciona
 ]
 ### PERMITIR CORS DESDE TODAS PARTES (solo desarrollo)
 
