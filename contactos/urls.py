@@ -9,11 +9,6 @@ router.register(r"groups", views.GroupViewSet)
 router.register(r"contacto", views.ContactoViewSet)
 
 urlpatterns = [
-    # URLs de AUTENTICACIÓN de Django (¡Solución al 404!)
-    # Esto agrega /accounts/login/, /accounts/logout/, /accounts/password_change/, etc.
-    path('accounts/', include('django.contrib.auth.urls')), 
-    
-    # Tus URLs existentes
     path('', views.lista_contactos, name='lista_contactos'),
     path('agregar/', views.agregar_contacto, name='agregar_contacto'),
     path('editar/<int:pk>/', views.editar_contacto, name='editar_contacto'),
