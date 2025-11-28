@@ -85,8 +85,14 @@ INSTALLED_APPS = [
 
 
 
+# settings.py
+
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
+        # 1. Agrega SessionAuthentication aquí
+        "rest_framework.authentication.SessionAuthentication", 
+        
+        # 2. Deja JWTAuthentication
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
