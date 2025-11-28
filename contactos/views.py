@@ -9,7 +9,6 @@ from .serializers import GroupSerializer, UserSerializer, ContactoSerializer
 from django.contrib.auth.decorators import login_required
 
 
-
 class ContactoViewSet(viewsets.ModelViewSet):
     queryset = Contacto.objects.all().order_by("nombre")
     serializer_class = ContactoSerializer
@@ -34,7 +33,6 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-@login_required
 def lista_contactos(request):
     query = request.GET.get('q')
     if query:
@@ -42,11 +40,9 @@ def lista_contactos(request):
             Q(nombre__icontains=query) | Q(correo__icontains=query)
         )
     else:
-        # Aquí solo se mostrarán los contactos si el usuario está logueado
-        contactos = Contacto.objects.all() 
+        contactos = Contacto.objects.all()
     return render(request, 'contactos/lista_contactos.html', {'contactos': contactos})
 
-@login_required
 def agregar_contacto(request):
     if request.method == 'POST':
         form = ContactoForm(request.POST)
@@ -57,7 +53,6 @@ def agregar_contacto(request):
         form = ContactoForm()
     return render(request, 'contactos/agregar_contacto.html', {'form': form})
 
-@login_required
 def editar_contacto(request, pk):
     contacto = get_object_or_404(Contacto, pk=pk)
     if request.method == 'POST':
@@ -69,7 +64,6 @@ def editar_contacto(request, pk):
         form = ContactoForm(instance=contacto)
     return render(request, 'contactos/editar_contacto.html', {'form': form})
 
-@login_required
 def eliminar_contacto(request, pk):
     contacto = get_object_or_404(Contacto, pk=pk)
     if request.method == 'POST':
