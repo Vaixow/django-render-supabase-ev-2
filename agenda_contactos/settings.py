@@ -53,7 +53,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5500",
     "http://localhost:4200",
     "http://127.0.0.1:8000",
-    "https://ultimo-intento-ahora-si.onrender.com"
+    "https://ultimo-intento-ahora-si.onrender.com",
     "http://127.0.0.1:5500",
 ]
 ### PERMITIR CORS DESDE TODAS PARTES (solo desarrollo)
