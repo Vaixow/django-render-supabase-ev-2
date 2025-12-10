@@ -58,6 +58,9 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",
     "http://127.0.0.1:8000",
     "https://ultimo-intento-ahora-si.onrender.com",
+    "http://localhost:5500",
+    
+
     
 
     "http://127.0.0.1:5500",  # Opción 2: La dirección exacta que usa tu navegador
